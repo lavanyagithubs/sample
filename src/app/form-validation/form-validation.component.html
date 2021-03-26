@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-md-6 mx-auto">
+            <form #ref="ngForm" (ngSubmit)="registerSubmit(ref)">
+                <div class="form-group">
+                    <label for="un">Username</label>
+                    <input type="text" name="username" id="un" class="form-control" required minlength="4" #ref1="ngModel" autocomplete="off" ngModel>
+                    <div *ngIf="ref1.invalid && (ref1.dirty ||ref1.touched)" class="alert alert-danger">
+                        <div *ngIf="ref1.errors?.required">
+                            UserName is required
+                        </div>
+                        <div *ngIf="ref1.errors?.minlength">
+                            Name must be at least 4 characters long
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="un">name</label>
+                    <input type="text" name="username" id="un" class="form-control" required minlength="4" #ref1="ngModel" autocomplete="off" ngModel>
+                    <div *ngIf="ref1.invalid && (ref1.dirty ||ref1.touched)" class="alert alert-danger">
+                        <div *ngIf="ref1.errors?.required">
+                            Name is required
+                        </div>
+                        <div *ngIf="ref1.errors?.minlength">
+                            Name must be at least 4 characters long
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="un">Password</label>
+                    <input type="text" name="username" id="un" class="form-control" required minlength="4" #ref1="ngModel" autocomplete="off" ngModel>
+                    <div *ngIf="ref1.invalid && (ref1.dirty ||ref1.touched)" class="alert alert-danger">
+                        <div *ngIf="ref1.errors?.required">
+                            Password is required
+                        </div>
+                        <div *ngIf="ref1.errors?.minlength">
+                            Name must be at least 4 characters long
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-success mt-5" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-bordered text-center mt-3">
+        <thead>
+            <th>EmpNo</th>
+            <th>Name</th>
+            <th>skills</th>
+            <th>Project</th>
+            <th>HCM</th>
+            <th>Edit/Save</th>
+            <th>delete</th>
+        </thead>
+        <tbody *ngFor="let obj of Employees;let ind = index">
+            <tr *ngIf="!status && obj.id === refid">
+                <td>{{obj.id}}</td>
+                <td><input type="text" name="name" autocomplete="off" [value]="obj.name" #r1></td>
+                <td><input type="text" name="skills" autocomplete="off" [value]="obj.skills" #r2></td>
+                <td><input type="text" name="project" autocomplete="off" [value]="obj.project" #r3></td>
+                <td><input type="text" name="hcm" autocomplete="off" [value]="obj.HCM" #r4></td>
+                <td>
+                    <button class="btn text-primary" (click)="save(obj.id,r1.value,r2.value,r3.value,r4.value)">save</button>
+                    <button class="btn" (click)="delete(obj.id)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr >
+
+            <tr *ngIf="(status)||(!status && obj.id !== refid)">
+                <td>{{obj.id}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.skills}}</td>
+                <td>{{obj.project}}</td>
+                <td>{{obj.HCM}}</td>
+                <td><button class="btn" (click)="edit(obj.id)"><i class="fa fa-edit"></i></button></td>
+                <td><button class="btn" (click)="delete(obj.id)"><i class="fa fa-trash"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

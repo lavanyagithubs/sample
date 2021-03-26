@@ -1,0 +1,186 @@
+<div class="container">
+    <h1>Form Validation</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+         <!-- Associate Name -->
+         <div class="pb-2">
+            <label for="an" class="form-label">Associate Name</label>
+            <input type="text" name="associateName" id="an" class="form-control border-secondary"
+                placeholder="Associate Name" formControlName="associateName" autocomplete="off" placeholder="Associate Name">
+            
+            <!-- Validation for associate name -->
+            <div class="text-danger"
+                *ngIf="submitted||getControls().associateName.invalid && (getControls().associateName.dirty || getControls().associateName.touched)">
+                <p *ngIf="getControls().associateName.errors?.required">Please enter Associate Name</p>
+            </div>
+            <div class="text-danger" id="an" *ngIf="getControls().associateName.hasError('pattern')">
+                Accepts Alphabets & space</div>
+            <div class="text-danger" id="an" *ngIf="getControls().associateName.errors?.minlength">
+                Min Length is 5</div>
+            <div class="text-danger" id="an" *ngIf="getControls().associateName.errors?.maxlength">
+                Max Length is 30</div>
+        </div>
+
+    <div>
+        <input type="text" name="id" id="" class="form-control border-secondary" placeholder="Associate id" formControlName="id">
+   
+    <div class="text-danger"
+        *ngIf="getControls().id.touched || submitted && (getControls().id.dirty || getControls().id.invalid)">
+        <p *ngIf="getControls().id.errors?.required">
+            Please enter Associate id
+        </p>
+        <div class="text-danger" id="aid" *ngIf="getControls().id.hasError('pattern')">
+            Invalid Associate id</div>
+        <p *ngIf=getControls().id.errors?.minlength>
+            Invalid Associate Id
+        </p>
+        <p *ngIf=getControls().id.errors?.maxlength>
+            Invalid Associate Id
+        </p>
+    </div>   
+    </div>
+    <!-- Project Id -->
+    <div class="form-floating">
+        <input type="text" name="projectId" id="pid" class="form-control border-secondary" placeholder="Project ID"
+            formControlName="projectId" autocomplete="off">
+        <label for="pid" class="form-label">Project ID</label>
+        <!-- Validation for Project id -->
+        <div class="text-danger"
+            *ngIf="submitted||getControls().projectId.invalid && (getControls().projectId.dirty || getControls().projectId.touched)">
+            <p *ngIf="getControls().projectId.errors?.required">Please enter project id</p>
+        </div>
+        <div class="text-danger" id="aid" *ngIf="getControls().projectId.hasError('pattern')">
+            Invalid project id</div>
+        <div class="text-danger" id="aid" *ngIf="getControls().projectId.errors?.minlength">
+            Min Length is 6</div>
+        <!-- <div class="text-danger" id="aid" *ngIf="getControls().projectId.errors?.maxlength">
+            Max Length is 6 characters</div> -->
+    </div>
+    <!-- Offshore and OnShore -->
+    <div class="form-group pb-3">
+        <div class="form-check form-check-inline">
+            <input type="radio" name="shore" id="offshore" class="form-check-input" value="offshore"
+                formControlName="shore" (click)="offShore()">
+            <label class="form-check-label" for="offshore">Offshore</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="radio" name="shore" id="onshore" class="form-check-input" value="onshore"
+                formControlName="shore" (click)="onShore()">
+            <label class="form-check-label" for="onshore">Onshore</label>
+        </div>
+        <div class="pb-2">
+            <select class="form-select border-secondary" formControlName="Loc">
+                <option value="">Select Location</option>
+                <option value="Chennai" id="chennai">Chennai</option>
+                <option value="Banglore" id="banglore">Banglore</option>
+                <option value="Hyderabad" id="hyderabad">Hyderabad</option>
+                <option value="Pune" id="pune">Pune</option>
+                <option value="Kochi" id="kochi">Kochi</option>
+
+                <option value="US" id="us">US</option>
+                <option value="Non US" id="non-us">Non US</option>
+
+            </select>
+            <div class="text-danger"
+                *ngIf="submitted||getControls().Loc.invalid && (getControls().Loc.dirty || getControls().Loc.touched)">
+                <p *ngIf="getControls().Loc.errors?.required">Please select location</p>
+            </div>
+        </div>
+    </div>
+      <!-- skills -->
+      <div class="form-group pb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="html" class="form-check-input"
+                        value="HTML5,CSS3,JS" formControlName="skills">
+                    <label class="form-check-label" for="html">HTML5,CSS3,JS</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="sass" class="form-check-input" value="SASS"
+                        formControlName="skills">
+                    <label class="form-check-label" for="sass">SASS</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="es" class="form-check-input"
+                        value="ES5,ES6,ES7..." formControlName="skills">
+                    <label class="form-check-label" for="es">ES5,ES6,ES7...</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="bootstrap" class="form-check-input"
+                        value="Bootstrap" formControlName="skills">
+                    <label class="form-check-label" for="bootstrap">Bootstrap</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="Angular" class="form-check-input"
+                        value="Angular8" formControlName="skills">
+                    <label class="form-check-label" for="Angular">Angular 8</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="react" class="form-check-input"
+                        value="ReactJS" formControlName="skills">
+                    <label class="form-check-label" for="react">React JS</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="vue" class="form-check-input" value="VueJS"
+                        formControlName="skills">
+                    <label class="form-check-label" for="vue">Vue JS</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="ts" class="form-check-input"
+                        value="TypeScript" formControlName="skills">
+                    <label class="form-check-label" for="ts">TypeScript</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="express" class="form-check-input"
+                        value="ExpressJS" formControlName="skills">
+                    <label class="form-check-label" for="express">Express JS</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="node" class="form-check-input"
+                        value="NodeJS" formControlName="skills">
+                    <label class="form-check-label" for="node">Node JS</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="skills" id="mongo" class="form-check-input"
+                        value="Mongodb" formControlName="skills">
+                    <label class="form-check-label" for="mongo">Mongo DB</label>
+                </div>
+            </div>
+        </div>
+        <!-- Validation for skills -->
+        <div class="text-danger">
+
+
+        </div>
+    </div>
+    <!-- Upload profile -->
+     <div class="form-group pb-2">
+        <label for="uplaod" class="form-label">Upload Profile</label><br>
+        <input type="file" name="uplaodfile" id="upload" formControlName="uploadfile">
+        <div class="text-danger"
+            *ngIf="submitted||getControls().uploadfile.invalid && (getControls().uploadfile.dirty || getControls().uploadfile.touched)">
+            <p *ngIf="getControls().uploadfile.errors?.required">Please upload profile picture</p>
+        </div>
+    </div> 
+    <!-- Comments -->
+    <div class="form-floating pb-3">
+        <textarea name="comments" class="form-control border-secondary" id="c" placeholder="Comments"
+            formControlName="aboutyourself" style="height: 100px;"></textarea>
+        <label for="c" class="form-label">Comments</label>
+        <div class="text-danger"
+            *ngIf="submitted||getControls().aboutyourself.invalid && (getControls().aboutyourself.dirty || getControls().aboutyourself.touched)">
+            <p *ngIf="getControls().aboutyourself.errors?.required">Please enter comments</p>
+        </div>
+    </div>
+    <div class="d-flex">
+        <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Submit</button>&nbsp;
+        <button class="btn btn-danger" type="submit" (click) = "reset()">Reset</button>
+    </div>
+
+   
+</form>
+</div>

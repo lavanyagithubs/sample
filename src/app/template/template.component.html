@@ -1,0 +1,35 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-md-6 mx-auto">
+            <form class="form" #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && onSubmit()">
+                <div class="form-group">
+                    <label> Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="userModal.name" name="name" #name="ngModel" required>
+                    <span class="text-danger"
+                        *ngIf ="(name.touched || registerForm.submitted) && name.errors?.required">
+                        Name is required
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" [(ngModel)]="userModal.email" name="email" #email="ngModel" required>
+                    <span class="text-danger"
+                    *ngIf ="(email.touched || registerForm.submitted) && email.errors?.required">
+                    email is required
+                </span>
+                </div>
+                <div class="form-group">
+                    <label> Username</label>
+                    <input type="text" class="form-control" [(ngModel)]="userModal.username" name="username" #username="ngModel" required>
+                    <span class="text-danger"
+                        *ngIf ="(username.touched || registerForm.submitted) && username.errors?.required">
+                        Name is required
+                    </span>
+                </div>
+               <button class="btn btn-success">submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>

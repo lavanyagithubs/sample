@@ -1,0 +1,35 @@
+<div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div>
+        <input type="text" name="username" id="" class="form-control" placeholder="Associate Name" formControlName="username">
+    </div>
+    <div class="text-danger"
+        *ngIf="getControls().username.touched || submitted && (getControls().username.dirty || getControls().username.invalid)">
+        <p *ngIf="getControls().username.errors?.required">
+            Please enter Associate Name
+        </p>
+
+    </div>
+       
+        <input type="text" name="email" id="" class="form-control" placeholder="email" formControlName="email">
+        <div class="text-danger"
+        *ngIf="getControls().email.touched || submitted && (getControls().email.dirty || getControls().email.invalid)">
+        <p *ngIf="getControls().email.errors?.required">
+            email is required
+        </p>
+
+    </div>
+       
+        <input type="text" name="name" id="" class="form-control" placeholder="name" formControlName="name">
+        <div class="text-danger"
+        *ngIf="getControls().name.touched || submitted && (getControls().name.dirty || getControls().name.invalid)">
+        <p *ngIf="getControls().name.errors?.required">
+            email is required
+        </p>
+
+    </div>
+
+       
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+</div>
